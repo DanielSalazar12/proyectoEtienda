@@ -10,6 +10,8 @@ const productoController=require("../controllers/productos");
 //rutas que entrega la API 
 
 router.get("/producto/listartodos",productoController.listarTodos);
+router.post("/producto/nuevo",productoController.nuevo);
+
 //....
 
 module.exports = router; 

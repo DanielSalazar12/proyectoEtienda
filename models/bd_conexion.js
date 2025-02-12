@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const conexion = async ()=>{
 
     try {
-      await mongoose.connect('mongodb://127.0.0.1:27017/DBtienda');
+      await mongoose.connect('mongodb://127.0.0.1:27017/Etienda');
       console.log(`Conectado`);
     } catch (error) {
         console.log(`Error en la funcion : ${error}`);
