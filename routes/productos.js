@@ -11,7 +11,9 @@ const productoController=require("../controllers/productos");
 
 router.get("/producto/listartodos",productoController.listarTodos);
 router.post("/producto/nuevo",productoController.nuevo);
-
+router.get("/producto/buscarPorId/:id",productoController.buscarPorId);
+router.delete("/producto/borrarPorId/:id",productoController.borrarPorId);
+router.put("/producto/actualizarPorId/:id",productoController.actualizarPorId);
 //....
 
 module.exports = router; 
