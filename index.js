@@ -15,13 +15,13 @@ conexion();
 //Rutas globales de la app
 
 const productoRuta= require("./routes/productos.js");
-
+const usuarioRuta= require("./routes/usuarios.js");
 
 //Usamos las rutas 
 
 app.use("/api",productoRuta);
 
-
+app.use("/api",usuarioRuta);
 
 app.listen(4000,()=>{
     console.log(`listen ${4000}`);

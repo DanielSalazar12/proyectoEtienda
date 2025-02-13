@@ -125,7 +125,6 @@ const actualizarPorId = async (req,res)=>{
         estaOfertado:req.body.estaOfertado,
      };
      
-
      try {
         let consulta = await producto.findByIdAndUpdate(id,datos).exec();
         return res.send({
