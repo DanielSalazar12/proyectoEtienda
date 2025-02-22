@@ -10,6 +10,7 @@ const usuarioController=require("../controllers/usuarios");
 //rutas que entrega la API 
 
 router.get("/usuario/listartodos",usuarioController.listarTodos);
+router.post("/usuario/nuevo",usuarioController.nuevo);
 
 //....
 

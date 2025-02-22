@@ -3,7 +3,7 @@
 //Conectamos el controlador con su modelo correspondiente
 
 //const { model } = require('mongoose');
-
+//const Prodducto=require('../models/productos')
 let producto=require ('../models/productos');
 //const req = require('express/lib/request');
 //const res = require('express/lib/response');

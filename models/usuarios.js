@@ -44,7 +44,6 @@ const usuarioSchema = Schema(
         },
     },
     
-
 { collection: "usuarios"}
 
 );
