@@ -2,6 +2,7 @@
 
 const usuarios = require('../models/usuarios');
 let Usuarios=require ('../models/usuarios');
+let jwt =require('jsonwebtoken');
 
 let bcrytp =require('bcryptjs')
 
@@ -26,6 +27,16 @@ const listarTodos = async (req,res)=>{
     }
     
 };
+
+/**  
+@abstract funcion que hace la insercion se los usuarios en el sistema 
+@author juandaniels
+@param req la petición con la data del formulario de registro del usuario 
+@param res falso si no existe el usuario, true y mensaje de exito si se crea, false y mensaje de error si no ingreso
+@version 01 -24-02-2025
+@callback function asincronica que ejecuta la api
+
+*/
 
 //Crear nuevo 
 const nuevo =async (req,res) =>{
@@ -99,31 +110,53 @@ try {
 }
 }
 
+/**  
+@description funcion que hace login o ingreso al sistema con autenticación de 2 factores 
+@author juandaniels
+@param req la petición del usuario y la pass
+@param res falso si no existe el usuario, true y mensaje de exito si se crea, false y mensaje de error si no ingreso
+@version 01 -24-02-2025
+@callback function asincronica que ejecuta la api
 
-    const login = async (req, res) => {
-    let usuarioexiste = await Usuarios.findOne({ email: req.body.email });
+*/
+
+const login = async function(req, res){
+let usuarioexiste = await Usuarios.findOne({ email: req.body.email });
     
-    if (!usuarioexiste) {
-    return res.send({
-    estado: false,
-    mensaje: "no existe el usuario",
-    });
-    }
+if (!usuarioexiste) {
+return res.send({
+estado: false,
+mensaje: "Usuario no existe en el sistema",
+ });
+}
     
-    if (bcrypt.compareSync(req.body.clave, Usuarios.passwordHash)) {
-    return res.send({
-    estado: true,
-    mensaje: "ok",
-    });
-    } else {
-    return res.send({
-    estado: false,
-    mensaje: "no",
-    });
-    }
-    };
+if (bcrytp.compareSync(req.body.passwordHash, usuarioexiste.passwordHash)) {
+
+const token =jwt.sign(
+    {
+    userId: usuarioexiste.id,
+    esAdmin: usuarioexiste.esAdmin,
+   },
+
+"seCreTo",
+
+{expiresIn:"4h"}
+);
+
+return res.send({
+estado: true,
+mensaje: "Ingreso exitoso al sistema",
+token:token
+ });
+} else {
+return res.send({
+estado: false,
+mensaje: "Credenciales erroneas,intentalo de nuevo",
+ });
+}
+};
 
 ////=====================
 
 
-module.exports={listarTodos,buscarPorId,nuevo};
+module.exports={listarTodos,buscarPorId,nuevo,login};

@@ -9,6 +9,14 @@ let producto=require ('../models/productos');
 //const res = require('express/lib/response');
 
 //Toda la logica de un crud comun y corriente
+/**
+@description funcion que hace login o ingreso al sistema con autenticación de 2 factores 
+@author juandaniels
+@param req la petición del usuario y la pass
+@param res falso si no existe el usuario, true y mensaje de exito si se crea, false y mensaje de error si no ingreso
+@version 01 -24-02-2025
+@callback function asincronica que ejecuta la api
+ */
 
 const listarTodos = async (req,res)=>{
 

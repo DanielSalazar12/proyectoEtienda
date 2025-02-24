@@ -11,6 +11,7 @@ const usuarioController=require("../controllers/usuarios");
 
 router.get("/usuario/listartodos",usuarioController.listarTodos);
 router.post("/usuario/nuevo",usuarioController.nuevo);
+router.post("/usuario/login",usuarioController.login);
 
 //....
 
